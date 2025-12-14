@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   // placeholder for auth logic
-  const isAuthenticated = true;
   const navigate = useNavigate();
 
   useEffect(() => {
