@@ -9,13 +9,15 @@
   --color-carepulse-red: #f24e43;
   --color-carepulse-gray: #abb8c4;
   --color-modal-glass: #1a1d21f5;
-  --font-jakarta: "Plus Jakarta Sans", sans-serf;
+  --color-glass: "#ffffff14";
+  --color-noble-black-100: #e8e9e9;
+  --color-noble-black-200: #cdcecf;
   --color-noble-black-500: #363a3d;
   --color-noble-black-600: #1a1d21;
   --color-noble-black-700: #131619;
   --color-noble-black-800: #0d0f10;
+  --font-jakarta: "Plus Jakarta Sans", sans-serf;
 }
-
 @layer base {
   html {
     @apply bg-noble-black-700 text-white font-jakarta;
@@ -35,6 +37,13 @@
   input:-webkit-autofill {
     -webkit-text-fill-color: white;
     caret-color: white;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  textarea {
+    @apply border border-[#363A3D] h-24 bg-transparent rounded-lg p-4 placeholder:text-[#76828D] focus:outline-none focus:ring-1 focus:ring-carepulse-green;
   }
 }
 
@@ -140,19 +149,29 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
 @layer components {
   .btn {
     @apply rounded-lg w-full py-3 font-semibold transition-colors hover:opacity-80 cursor-pointer duration-300 text-white;
   }
   .gradient-outline {
     @apply border-0 focus-within:bg-linear-to-r focus-within:from-[#82DBF7] focus-within:to-[#B6F09C] p-px rounded-lg;
+  }
+}
+@layer utilities {
+  .dialog-content {
+    @apply bg-modal-glass w-9/10 max-w-160 shadow-[0_8px_12px_0_rgba(255,255,255,0.04),0_24px_64px_-16px_rgba(0,0,0,0.24)]
+ rounded-2xl text-white border-none sm:p-10 gap-10 sm:pb-12.5;
+  }
+  .dialog-description {
+    @apply text-sm text-carepulse-gray sm:text-base font-medium;
+  }
+  .dialog-close {
+    @apply absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 text-white opacity-70 sm:static sm:translate-y-0 hover:opacity-100;
+  }
+  .no-date-icon::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  .glass-gradient {
+    @apply bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)];
   }
 }

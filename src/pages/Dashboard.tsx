@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <main className="px-10 lg:px-20">
+      <main className="px-10 pb-15 lg:px-20">
         <header className="my-10.5">
           <h1 className="">Welcome, Admin</h1>
           <p className="text-carepulse-gray font-medium mt-3">
@@ -17,7 +17,7 @@ const Dashboard = () => {
         </header>
         <section className="flex justify-between">
           {dashboardCardData.map((card) => (
-            <DashboardCard {...card} />
+            <DashboardCard {...card} key={card.title} />
           ))}
         </section>
         <DataTable columns={appointmentColumns} data={appointments} />

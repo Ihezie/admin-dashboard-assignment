@@ -2,7 +2,6 @@ interface DashboardCardProps {
   Icon: React.FunctionComponent;
   title: string;
   value: number;
-  gradient: string;
   edgeColor: string;
 }
 import { cn } from "@/lib/utils";
@@ -11,17 +10,11 @@ const DashboardCard = ({
   Icon,
   title,
   value,
-  gradient,
   edgeColor,
 }: DashboardCardProps) => {
   return (
-    <div className="lg:w-[31.25%] relative overflow-hidden rounded-[12px]">
-      <div
-        className={cn(
-          "py-8 px-6 border-t border-[#FFFFFF14] relative z-10",
-          gradient
-        )}
-      >
+    <div className="lg:w-[31.25%] relative overflow-hidden rounded-xl">
+      <div className="py-8 px-6 border-t relative z-10 border-white/10">
         <div className="flex gap-4.5 items-center">
           <Icon /> <span className="font-bold text-[32px]">{value}</span>
         </div>

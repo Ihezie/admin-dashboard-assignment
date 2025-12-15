@@ -45,19 +45,13 @@ const VerifyOtp = ({
 
   return (
     <Dialog open={show}>
-      <DialogContent
-        showCloseButton={false}
-        className="bg-modal-glass text-white border-none sm:p-10 gap-10 sm:pb-12.5 w-auto! max-w-none!"
-      >
+      <DialogContent showCloseButton={false} className="dialog-content">
         <DialogHeader className="gap-4">
           <div className="sm:flex sm:justify-between sm:items-center relative">
             <DialogTitle className="text-xl sm:text-2xl">
-              Verify OTP{" "}
+              Verify OTP
             </DialogTitle>
-            <DialogClose
-              asChild
-              className="absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 text-white opacity-70 sm:static hover:opacity-100"
-            >
+            <DialogClose asChild className="dialog-close">
               <button
                 onClick={() => {
                   setShowVerifyOtp(false);
@@ -69,7 +63,7 @@ const VerifyOtp = ({
               </button>
             </DialogClose>
           </div>
-          <DialogDescription className="text-s text-carepulse-gray sm:text-base font-medium">
+          <DialogDescription className="dialog-description">
             Please enter the OTP sent to your registered mobile number.
           </DialogDescription>
         </DialogHeader>

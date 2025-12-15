@@ -1,22 +1,24 @@
 import Calendar from "./assets/icons/calendar.svg?react";
 import Hourglass from "./assets/icons/hourglass.svg?react";
 import Alert from "./assets/icons/alert.svg?react";
+import X from "./assets/icons/canceled.svg?react";
+import Check from "./assets/icons/check.svg?react";
 import sarahSafari from "./assets/doctor-avatars/sarah-safari.png";
-import avaWilliams from "./assets/doctor-avatars/sarah-safari.png";
-import adamSmith from "./assets/doctor-avatars/sarah-safari.png";
+import avaWilliams from "./assets/doctor-avatars/ava-williams.png";
+import adamSmith from "./assets/doctor-avatars/adam-smith.png";
 
-type Appointment = {
+export type Appointment = {
   id: number;
-  patient: string;
-  date: string;
-  status: "Scheduled" | "Pending" | "Canceled";
-  doctor: {
-    id: string;
+  patient: {
     name: string;
+    avatar: string;
   };
+  date: string;
+  status: "scheduled" | "pending" | "canceled";
+  doctor: Doctor;
 };
 
-type Doctor = {
+export type Doctor = {
   id: string;
   name: string;
   avatar: string;
@@ -27,24 +29,18 @@ export const dashboardCardData = [
     Icon: Calendar,
     title: "scheduled appointments",
     value: 94,
-    gradient:
-      "bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)]",
     edgeColor: "bg-[#FFD147]",
   },
   {
     Icon: Hourglass,
     title: "pending appointments",
     value: 32,
-    gradient:
-      "bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)]",
     edgeColor: "bg-[#79B5EC]",
   },
   {
     Icon: Alert,
     title: "canceled appointments",
     value: 56,
-    gradient:
-      "bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)]",
     edgeColor: "bg-[#F37877]",
   },
 ];
@@ -52,52 +48,128 @@ export const dashboardCardData = [
 export const appointments: Appointment[] = [
   {
     id: 1,
-    patient: "Phoenix Baker",
+    patient: {
+      name: "John Doe",
+      avatar: "",
+    },
     date: "Jan 4, 2023",
-    status: "Scheduled",
+    status: "scheduled",
     doctor: {
       id: "1",
       name: "Dr. Sarah Safari",
+      avatar: sarahSafari,
     },
   },
   {
     id: 2,
-    patient: "Liam Johnson",
+    patient: {
+      name: "Jane Smith",
+      avatar: "",
+    },
     date: "Jan 5, 2023",
-    status: "Pending",
+    status: "pending",
     doctor: {
       id: "2",
       name: "Dr. Ava Williams",
+      avatar: avaWilliams,
     },
   },
   {
     id: 3,
-    patient: "Olivia Brown",
+    patient: {
+      name: "Michael Johnson",
+      avatar: "",
+    },
     date: "Jan 6, 2023",
-    status: "Canceled",
+    status: "canceled",
     doctor: {
       id: "3",
       name: "Dr. Adam Smith",
+      avatar: adamSmith,
     },
   },
   {
     id: 4,
-    patient: "Noah Davis",
+    patient: {
+      name: "Emily Davis",
+      avatar: "",
+    },
     date: "Jan 7, 2023",
-    status: "Scheduled",
+    status: "scheduled",
     doctor: {
       id: "1",
       name: "Dr. Sarah Safari",
+      avatar: sarahSafari,
     },
   },
   {
     id: 5,
-    patient: "Emma Wilson",
+    patient: {
+      name: "Daniel Wilson",
+      avatar: "",
+    },
     date: "Jan 8, 2023",
-    status: "Pending",
+    status: "pending",
     doctor: {
       id: "2",
       name: "Dr. Ava Williams",
+      avatar: avaWilliams,
+    },
+  },
+  {
+    id: 6,
+    patient: {
+      name: "Olivia Martinez",
+      avatar: "",
+    },
+    date: "Jan 9, 2023",
+    status: "canceled",
+    doctor: {
+      id: "3",
+      name: "Dr. Adam Smith",
+      avatar: adamSmith,
+    },
+  },
+  {
+    id: 7,
+    patient: {
+      name: "Sophia Anderson",
+      avatar: "",
+    },
+    date: "Jan 10, 2023",
+    status: "scheduled",
+    doctor: {
+      id: "1",
+      name: "Dr. Sarah Safari",
+      avatar: sarahSafari,
+    },
+  },
+  {
+    id: 8,
+    patient: {
+      name: "Liam Thomas",
+      avatar: "",
+    },
+    date: "Jan 11, 2023",
+    status: "pending",
+    doctor: {
+      id: "2",
+      name: "Dr. Ava Williams",
+      avatar: avaWilliams,
+    },
+  },
+  {
+    id: 9,
+    patient: {
+      name: "Ava Jackson",
+      avatar: "",
+    },
+    date: "Jan 12, 2023",
+    status: "canceled",
+    doctor: {
+      id: "3",
+      name: "Dr. Adam Smith",
+      avatar: adamSmith,
     },
   },
 ];
@@ -107,3 +179,21 @@ export const doctors: Doctor[] = [
   { id: "2", name: "Dr. Ava Williams", avatar: avaWilliams },
   { id: "3", name: "Dr. Adam Smith", avatar: adamSmith },
 ];
+
+export const statuses = {
+  scheduled: {
+    Icon: Check,
+    textColor: "text-carepulse-green",
+    bgColor: "bg-[#0D2A1F]",
+  },
+  pending: {
+    Icon: Hourglass,
+    textColor: "text-[#79B5EC]",
+    bgColor: "bg-[#152432]",
+  },
+  canceled: {
+    Icon: X,
+    textColor: "text-[#F37877]",
+    bgColor: "bg-[#3E1716]",
+  },
+};
