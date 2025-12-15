@@ -14,7 +14,7 @@ import {
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import Cross from "../assets/cross.svg?react";
+import Cross from "../assets/icons/cross.svg?react";
 import { useNavigate } from "react-router";
 
 const VerifyOtp = ({
@@ -94,7 +94,7 @@ const VerifyOtp = ({
               <InputOTPGroup className="gap-2 sm:gap-4.5 w-full mb-10">
                 {Array.from({ length: 6 }).map((_, index) => (
                   <InputOTPSlot
-                    className="size-12 md:size-20 border border-[#363A3D] rounded-md! font-medium text-xl md:text-5xl text-carepulse-green bg-carepulse-black"
+                    className="size-12 md:size-20 border border-[#363A3D] rounded-lg! font-medium text-xl md:text-5xl text-carepulse-green bg-noble-black-700"
                     key={index}
                     index={index}
                   />

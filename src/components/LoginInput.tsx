@@ -26,7 +26,7 @@ const LoginInput = ({
         {label}
       </label>
       <div className="mt-2 md:mt-4 gradient-outline">
-        <div className="flex items-center bg-carepulse-ash border border-[#363A3D] rounded-lg py-3 px-4 gap-3 focus-within:outline-5 outline-[#84DCF53D]">
+        <div className="flex items-center bg-noble-black-600 border border-noble-black-500 rounded-lg py-3 px-4 gap-3 focus-within:outline-5 outline-[#84DCF53D]">
           <Icon />
           <input
             id={id}

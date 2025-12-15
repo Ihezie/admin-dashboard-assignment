@@ -1,16 +1,40 @@
 interface DashboardCardProps {
   Icon: React.FunctionComponent;
   title: string;
-  stat: number;
+  value: number;
+  gradient: string;
+  edgeColor: string;
 }
+import { cn } from "@/lib/utils";
 
-const DashboardCard = ({ Icon, title, stat }: DashboardCardProps) => {
+const DashboardCard = ({
+  Icon,
+  title,
+  value,
+  gradient,
+  edgeColor,
+}: DashboardCardProps) => {
   return (
-    <div className="bg-linear-to-r">
-      <div>
-        <Icon /> <span>{stat}</span>
+    <div className="lg:w-[31.25%] relative overflow-hidden rounded-[12px]">
+      <div
+        className={cn(
+          "py-8 px-6 border-t border-[#FFFFFF14] relative z-10",
+          gradient
+        )}
+      >
+        <div className="flex gap-4.5 items-center">
+          <Icon /> <span className="font-bold text-[32px]">{value}</span>
+        </div>
+        <p className="font-semibold mt-6">
+          Total number of <span className="font-bold">{title}</span>
+        </p>
       </div>
-      <p>Total number of {title}</p>
+      <div
+        className={cn(
+          "size-28 absolute left-3 bottom-0 translate-y-1/2 rounded-full -z-10 blur-2xl opacity-15",
+          edgeColor
+        )}
+      ></div>
     </div>
   );
 };

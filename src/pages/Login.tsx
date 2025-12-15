@@ -1,9 +1,9 @@
-import logo from "../assets/logo.svg";
+import logo from "../assets/icons/logo.svg";
 import loginImage from "../assets/login-image.png";
 import LoginInput from "../components/LoginInput";
-import Person from "../assets/person.svg?react";
-import Email from "../assets/email.svg?react";
-import Phone from "../assets/phone.svg?react";
+import Person from "../assets/icons/person.svg?react";
+import Email from "../assets/icons/email.svg?react";
+import Phone from "../assets/icons/phone.svg?react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import VerifyOtp from "@/components/VerifyOtp";

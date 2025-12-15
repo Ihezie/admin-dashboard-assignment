@@ -48,7 +48,7 @@ function InputOTPSlot({
     <div className="relative">
       <div
         data-active={isActive}
-        className="data-[active=true]:bg-linear-to-r data-[active=true]:from-[#82DBF7] data-[active=true]:to-[#B6F09C] data-[active=true]:p-px rounded-md absolute size-[calc(100%+2px)] z-0 -top-px -left-px opacity-0 data-[active=true]:opacity-100 transition-opacity"
+        className="data-[active=true]:bg-linear-to-r data-[active=true]:from-[#82DBF7] data-[active=true]:to-[#B6F09C] data-[active=true]:p-px rounded-lg absolute size-[calc(100%+2px)] z-0 -top-px -left-px opacity-0 data-[active=true]:opacity-100 transition-opacity"
       ></div>
       <div
         data-slot="input-otp-slot"

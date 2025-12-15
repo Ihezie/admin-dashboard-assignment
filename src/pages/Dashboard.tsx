@@ -1,4 +1,8 @@
+import DashboardCard from "@/components/DashboardCard";
+import { DataTable } from "@/components/DataTable";
 import Navbar from "@/components/Navbar";
+import { dashboardCardData, appointments } from "@/mockData";
+import { appointmentColumns } from "@/components/AppointmentColumns";
 
 const Dashboard = () => {
   return (
@@ -11,12 +15,12 @@ const Dashboard = () => {
             Start day with managing new appointments
           </p>
         </header>
-        <section>
-
+        <section className="flex justify-between">
+          {dashboardCardData.map((card) => (
+            <DashboardCard {...card} />
+          ))}
         </section>
-        <section>
-          
-        </section>
+        <DataTable columns={appointmentColumns} data={appointments} />
       </main>
     </>
   );
