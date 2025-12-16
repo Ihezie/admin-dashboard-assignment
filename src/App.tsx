@@ -8,7 +8,7 @@ import Success from "./pages/Success";
 
 function App() {
   //Replace with actual authentication logic
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <BrowserRouter>
