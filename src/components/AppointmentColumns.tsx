@@ -4,6 +4,8 @@ import { statuses, type Appointment } from "@/mockData";
 import { cn } from "@/lib/utils";
 import ScheduleAppointment from "./ScheduleAppointment";
 import CancelAppointment from "./CancelAppointment";
+import DeleteBtn from "./DeleteBtn";
+import CircleQuestionMark from "@/assets/icons/circle-question-mark.svg?react";
 
 export const appointmentColumns: ColumnDef<Appointment>[] = [
   {
@@ -25,13 +27,19 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.getValue<"cancelled" | "pending" | "scheduled">(
+      const status = row.getValue<"cancelled" | "pending" | "scheduled" | null>(
         "status"
       );
-      const Icon = statuses[status]?.Icon;
-      const bgColor = statuses[status]?.bgColor;
-      const textColor = statuses[status]?.textColor;
-
+      let Icon, bgColor, textColor;
+      if (status) {
+        Icon = statuses[status]?.Icon;
+        bgColor = statuses[status]?.bgColor;
+        textColor = statuses[status]?.textColor;
+      } else {
+        Icon = CircleQuestionMark;
+        bgColor = "bg-gray-700";
+        textColor = "text-gray-300";
+      }
       return (
         <div
           className={cn(
@@ -44,8 +52,8 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
             className={cn("size-3", {
               "size-2.25 mt-px": status === "cancelled",
             })}
-          />{" "}
-          {status}
+          />
+          {status || "Not set"}
         </div>
       );
     },
@@ -70,6 +78,14 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
           <CancelAppointment appointmentId={id} status={status} />
         </div>
       );
+    },
+  },
+  {
+    accessorKey: "delete",
+    header: "",
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return <DeleteBtn deleteId={id} />;
     },
   },
 ];

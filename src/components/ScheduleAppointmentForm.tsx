@@ -5,6 +5,7 @@ import DoctorDropdown from "./DoctorDropdown";
 import DatePicker from "./DatePicker";
 import { useAppContext } from "./AppProvider";
 import { formatDate } from "@/lib/utils";
+import { useNavigate } from "react-router";
 
 const ScheduleAppointmentForm = ({
   setFormOpen,
@@ -20,7 +21,8 @@ const ScheduleAppointmentForm = ({
     date: "",
     reason: "",
   });
-  const { dispatch } = useAppContext()!;
+  const { dispatch, setAppointmentDetails } = useAppContext();
+  const navigate = useNavigate()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -44,6 +46,14 @@ const ScheduleAppointmentForm = ({
           date: formatDate(date),
         },
       });
+      navigate('/success')
+      setAppointmentDetails({
+        doctor,
+        date: formatDate(date)
+      })
+      setDate(undefined);
+      setDoctor(doctors[0]);
+      setReason("");
       setFormOpen(false);
     }
   };

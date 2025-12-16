@@ -13,25 +13,19 @@ import Person from "@/assets/icons/person.svg?react";
 import DoctorDropdown from "./DoctorDropdown";
 import { doctors } from "@/mockData";
 import { useState, type FormEvent } from "react";
-import DatePicker from "./DatePicker";
 import { useAppContext } from "./AppProvider";
-import { formatDate } from "@/lib/utils";
 import { v4 as uuidv4 } from "uuid";
 import type { Appointment } from "@/mockData";
 
 const AddToList = () => {
-  const [date, setDate] = useState<Date | undefined>();
-  const [reason, setReason] = useState("");
   const [doctor, setDoctor] = useState(doctors[0]);
   const [patientName, setPatientName] = useState("");
   const [open, setOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({
     patientName: "",
-    date: "",
-    reason: "",
   });
 
-  const { dispatch } = useAppContext()!;
+  const { dispatch } = useAppContext();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -41,32 +35,26 @@ const AddToList = () => {
         patientName: "Minimum of 2 characters",
       }));
     }
-    if (!date) {
-      setErrors((prev) => ({ ...prev, date: "Please select a date" }));
-    }
-    if (reason.trim().length < 10) {
-      setErrors((prev) => ({
-        ...prev,
-        reason: "Minimum of 10 characters",
-      }));
-    }
-    if (patientName.trim().length >= 2 && date && reason.trim().length >= 10) {
+    if (patientName.trim().length >= 2) {
       const appointment: Appointment = {
         id: uuidv4(),
         patient: {
           name: patientName,
           avatar: "",
         },
-        date: formatDate(date),
-        status: "scheduled",
+        date: "Not Scheduled",
+        status: null,
         doctor,
-        reasonForSchedule: reason,
         reasonForCancel: null,
+        reasonForSchedule: null,
       };
+      
       dispatch({
         type: "add-to-list",
         payload: appointment,
       });
+      setDoctor(doctors[0]);
+      setPatientName("");
       setOpen(false);
     }
   };
@@ -121,6 +109,7 @@ const AddToList = () => {
                       }));
                     }
                   }}
+                  maxLength={24}
                   required
                   placeholder="Enter patient name"
                   id="patientName"
@@ -138,28 +127,6 @@ const AddToList = () => {
               doctor={doctor}
               doctors={doctors}
               setDoctor={setDoctor}
-            />
-            <div className="form-item">
-              <label htmlFor="reason">Reason for appointment</label>
-              <textarea
-                id="reason"
-                value={reason}
-                onChange={(e) => {
-                  setReason(e.target.value);
-                  if (errors.reason && e.target.value.trim().length >= 10) {
-                    setErrors((prev) => ({ ...prev, reason: "" }));
-                  }
-                }}
-                required
-                placeholder="ex: Annual monthly check-up"
-              />
-              {errors.reason && <p className="error">{errors.reason}</p>}
-            </div>
-            <DatePicker
-              errors={errors}
-              setDate={setDate}
-              date={date}
-              setErrors={setErrors}
             />
           </div>
           <button className="btn bg-carepulse-green mt-10" type="submit">

@@ -17,13 +17,13 @@ const CancelAppointment = ({
   status,
 }: {
   appointmentId: string;
-  status: string;
+  status: string | null;
 }) => {
   const [error, setError] = useState("");
   const [reason, setReason] = useState("");
   const [open, setOpen] = useState(false);
 
-  const { dispatch } = useAppContext()!;
+  const { dispatch } = useAppContext();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -31,8 +31,6 @@ const CancelAppointment = ({
       setError("Minimum of 10 characters");
     }
     if (reason.trim().length >= 10) {
-      console.log("hey");
-
       dispatch({
         type: "cancel-appointment",
         payload: {
@@ -40,14 +38,20 @@ const CancelAppointment = ({
           reasonForCancel: reason,
         },
       });
+      setReason("");
       setOpen(false);
     }
   };
-  const disable = status === "cancelled" ? true : false;
+  const disable = status === "cancelled" || !status ? true : false;
   return (
     <Dialog open={open && !disable} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" type="button" className="text-[#FBECEC]">
+        <Button
+          disabled={disable}
+          variant="ghost"
+          type="button"
+          className="text-[#FBECEC] p-0 bg-transparent!"
+        >
           Cancel
         </Button>
       </DialogTrigger>

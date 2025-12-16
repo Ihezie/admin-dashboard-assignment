@@ -3,6 +3,8 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
+import AppProvider from "./components/AppProvider";
+import Success from "./pages/Success";
 
 function App() {
   //Replace with actual authentication logic
@@ -10,15 +12,18 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/" element={<Dashboard />} />
-        </Route>
-        <Route
-          path="/login"
-          element={<Login setIsAuthenticated={setIsAuthenticated} />}
-        />
-      </Routes>
+      <AppProvider>
+        <Routes>
+          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/success" element={<Success />} />
+          </Route>
+          <Route
+            path="/login"
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+          />
+        </Routes>
+      </AppProvider>
     </BrowserRouter>
   );
 }

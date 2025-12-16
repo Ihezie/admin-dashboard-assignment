@@ -40,7 +40,6 @@ const DatePicker = ({ date, setDate, errors, setErrors }: DatePickerProps) => {
         </PopoverTrigger>
         <PopoverContent className="w-auto overflow-hidden p-0" align="start">
           <Calendar
-          // disable past date
             disabled={{ before: new Date() }}
             mode="single"
             selected={date}

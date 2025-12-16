@@ -1,11 +1,12 @@
 import type { UseFormRegister } from "react-hook-form";
 import type { FormValues } from "../pages/Login";
+import type { Icon } from "@/mockData";
 
 interface InputProps {
   id: "fullName" | "email" | "phone";
   type: string;
   label: string;
-  Icon: React.FunctionComponent;
+  Icon: Icon;
   placeholder: string;
   validation?: Record<string, Record<string, number | string | RegExp>>;
   register: UseFormRegister<FormValues>;

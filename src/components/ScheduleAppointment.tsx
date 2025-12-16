@@ -17,11 +17,11 @@ const ScheduleAppointment = ({
   status,
 }: {
   appointmentId: string;
-  status: string;
+  status: string | null;
 }) => {
   const [open, setOpen] = useState(false);
-  const disable = status === "scheduled" ? true : false;
-  
+  const disable = status === "scheduled" || status === "pending" ? true : false;
+
   return (
     <Dialog open={open && !disable} onOpenChange={setOpen}>
       <DialogTrigger disabled={disable} asChild>
@@ -29,7 +29,7 @@ const ScheduleAppointment = ({
           disabled={disable}
           variant="ghost"
           type="button"
-          className="text-carepulse-green"
+          className="text-carepulse-green p-0 bg-transparent! hover:text-carepulse-green"
         >
           Schedule
         </Button>
