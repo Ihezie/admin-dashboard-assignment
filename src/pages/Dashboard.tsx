@@ -1,8 +1,10 @@
 import DashboardCard from "@/components/DashboardCard";
 import { DataTable } from "@/components/DataTable";
 import Navbar from "@/components/Navbar";
-import { dashboardCardData, appointments } from "@/mockData";
+import { dashboardCardData } from "@/mockData";
 import { appointmentColumns } from "@/components/AppointmentColumns";
+import AppProvider from "@/components/AppProvider";
+import { useAppContext } from "@/components/AppProvider";
 
 const Dashboard = () => {
   return (
@@ -15,14 +17,25 @@ const Dashboard = () => {
             Start day with managing new appointments
           </p>
         </header>
-        <section className="flex justify-between">
-          {dashboardCardData.map((card) => (
-            <DashboardCard {...card} key={card.title} />
-          ))}
-        </section>
-        <DataTable columns={appointmentColumns} data={appointments} />
+        <AppProvider>
+          <MainContent />
+        </AppProvider>
       </main>
     </>
   );
 };
 export default Dashboard;
+
+const MainContent = () => {
+  const { data } = useAppContext()!;
+  return (
+    <>
+      <section className="flex justify-between">
+        {dashboardCardData.map((card) => (
+          <DashboardCard {...card} key={card.title} />
+        ))}
+      </section>
+      <DataTable columns={appointmentColumns} data={data} />
+    </>
+  );
+};

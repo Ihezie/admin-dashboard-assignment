@@ -14,7 +14,7 @@ const DashboardCard = ({
 }: DashboardCardProps) => {
   return (
     <div className="lg:w-[31.25%] relative overflow-hidden rounded-xl">
-      <div className="py-8 px-6 border-t relative z-10 border-white/10">
+      <div className="py-8 px-6 border-t relative z-10 border-white/10 glass-gradient">
         <div className="flex gap-4.5 items-center">
           <Icon /> <span className="font-bold text-[32px]">{value}</span>
         </div>
@@ -28,6 +28,7 @@ const DashboardCard = ({
           edgeColor
         )}
       ></div>
+
     </div>
   );
 };

@@ -43,10 +43,46 @@
     cursor: pointer;
   }
   textarea {
-    @apply border border-[#363A3D] h-24 bg-transparent rounded-lg p-4 placeholder:text-[#76828D] focus:outline-none focus:ring-1 focus:ring-carepulse-green;
+    @apply border border-[#363A3D] h-24 bg-transparent rounded-lg p-4 placeholder:text-[#76828D] focus:outline-none focus:border-white ;
+  }
+  label {
+    @apply text-sm text-carepulse-gray font-medium;
+  }
+}
+@layer components {
+  .btn {
+    @apply rounded-lg w-full py-3 font-semibold transition-colors hover:opacity-80 cursor-pointer text-white;
+  }
+  .gradient-outline {
+    @apply border-0 focus-within:bg-linear-to-r focus-within:from-[#82DBF7] focus-within:to-[#B6F09C] p-px rounded-lg;
+  }
+  .form-item {
+    @apply flex flex-col gap-3 relative;
+  }
+  .error{
+    @apply mt-2 text-xs sm:text-sm text-red-500 font-bold absolute right-0 -bottom-4 sm:font-medium sm:-bottom-6
+  }
+}
+@layer utilities {
+  .dialog-content {
+    @apply bg-modal-glass w-9/10 max-w-160 shadow-[0_8px_12px_0_rgba(255,255,255,0.04),0_24px_64px_-16px_rgba(0,0,0,0.24)]
+ rounded-2xl text-white border-none sm:p-10 gap-10 sm:pb-12.5;
+  }
+  .dialog-description {
+    @apply text-sm text-carepulse-gray sm:text-base font-medium;
+  }
+  .dialog-close {
+    @apply absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 text-white opacity-70 sm:static sm:translate-y-0 hover:opacity-100;
+  }
+  .no-date-icon::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  .glass-gradient {
+    @apply bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)];
   }
 }
 
+/* Shadcn Variables */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -82,8 +118,6 @@
 }
 
 :root {
-  /* --background: oklch(1 0 0); */
-  /* --foreground: oklch(0.145 0 0); */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -147,31 +181,4 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer components {
-  .btn {
-    @apply rounded-lg w-full py-3 font-semibold transition-colors hover:opacity-80 cursor-pointer duration-300 text-white;
-  }
-  .gradient-outline {
-    @apply border-0 focus-within:bg-linear-to-r focus-within:from-[#82DBF7] focus-within:to-[#B6F09C] p-px rounded-lg;
-  }
-}
-@layer utilities {
-  .dialog-content {
-    @apply bg-modal-glass w-9/10 max-w-160 shadow-[0_8px_12px_0_rgba(255,255,255,0.04),0_24px_64px_-16px_rgba(0,0,0,0.24)]
- rounded-2xl text-white border-none sm:p-10 gap-10 sm:pb-12.5;
-  }
-  .dialog-description {
-    @apply text-sm text-carepulse-gray sm:text-base font-medium;
-  }
-  .dialog-close {
-    @apply absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 text-white opacity-70 sm:static sm:translate-y-0 hover:opacity-100;
-  }
-  .no-date-icon::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  .glass-gradient {
-    @apply bg-[linear-gradient(117.58deg,rgba(215,237,237,0.16)_-47.79%,rgba(204,235,235,0)_100%)];
-  }
 }

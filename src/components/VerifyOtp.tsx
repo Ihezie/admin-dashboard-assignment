@@ -68,7 +68,6 @@ const VerifyOtp = ({
           </DialogDescription>
         </DialogHeader>
         <form
-          className=""
           onSubmit={(e) => {
             handleOtp(e);
           }}
@@ -85,10 +84,10 @@ const VerifyOtp = ({
               maxLength={6}
               pattern={REGEXP_ONLY_DIGITS}
             >
-              <InputOTPGroup className="gap-2 sm:gap-4.5 w-full mb-10">
+              <InputOTPGroup className="gap-2 justify-center sm:gap-4.5 w-full mb-10">
                 {Array.from({ length: 6 }).map((_, index) => (
                   <InputOTPSlot
-                    className="size-12 md:size-20 border border-[#363A3D] rounded-lg! font-medium text-xl md:text-5xl text-carepulse-green bg-noble-black-700"
+                    className="size-12 sm:size-16 md:size-20 border border-[#363A3D] rounded-lg! font-medium text-xl md:text-5xl text-carepulse-green bg-noble-black-700!"
                     key={index}
                     index={index}
                   />

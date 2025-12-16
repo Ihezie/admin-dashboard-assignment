@@ -26,24 +26,30 @@ const Profile = ({
     // Get Doctor Initials
     if (name.includes("Dr.")) {
       return names
-        .splice(1)
+        .slice(1)
         .map((item) => item.charAt(0).toUpperCase())
         .join("");
     }
     // Get Patient Initials
-    return names.map((item) => item.charAt(0).toUpperCase()).join("");
+    return names
+      .slice(0, 2)
+      .map((item) => item.charAt(0).toUpperCase())
+      .join("");
   };
   return (
     <div className={cn("flex gap-1 items-center", containerStyles)}>
       <Avatar className={cn(avatarStyles)}>
         <AvatarImage src={avatar} />
         <AvatarFallback
-          className={cn("text-black font-medium", fallbackBgColors[getRandomIndex()])}
+          className={cn(
+            "text-black font-medium",
+            fallbackBgColors[getRandomIndex()]
+          )}
         >
           {fallback(name)}
         </AvatarFallback>
       </Avatar>
-      <span className={cn("text-white font-semibold", textStyles)}>{name}</span>
+      <span className={cn("text-white font-semibold capitalize", textStyles)}>{name}</span>
     </div>
   );
 };

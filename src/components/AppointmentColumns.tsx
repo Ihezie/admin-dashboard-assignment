@@ -1,19 +1,9 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { Appointment } from "@/mockData";
 import Profile from "./Profile";
-import { statuses } from "@/mockData";
+import { statuses, type Appointment } from "@/mockData";
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import Cross from "../assets/icons/cross.svg?react";
-import ScheduleAppointmentForm from "./ScheduleAppointmentForm";
+import ScheduleAppointment from "./ScheduleAppointment";
+import CancelAppointment from "./CancelAppointment";
 
 export const appointmentColumns: ColumnDef<Appointment>[] = [
   {
@@ -35,7 +25,7 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.getValue<"canceled" | "pending" | "scheduled">(
+      const status = row.getValue<"cancelled" | "pending" | "scheduled">(
         "status"
       );
       const Icon = statuses[status]?.Icon;
@@ -52,7 +42,7 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
         >
           <Icon
             className={cn("size-3", {
-              "size-2.25 mt-px": status === "canceled",
+              "size-2.25 mt-px": status === "cancelled",
             })}
           />{" "}
           {status}
@@ -71,67 +61,13 @@ export const appointmentColumns: ColumnDef<Appointment>[] = [
   {
     accessorKey: "actions",
     header: "Actions",
-    cell: () => {
+    cell: ({ row }) => {
+      const id = row.original.id;
+      const status = row.original.status;
       return (
         <div className="flex gap-3.5 font-semibold">
-          {/* Schedule Appointment */}
-          <Dialog open={true}>
-            <DialogTrigger asChild>
-              <button type="button" className="text-carepulse-green">
-                Schedule
-              </button>
-            </DialogTrigger>
-            <DialogContent
-              showCloseButton={false}
-              className="dialog-content lg:w-160"
-            >
-              <DialogHeader className="gap-4">
-                <div className="sm:flex sm:justify-between sm:items-center relative">
-                  <DialogTitle className="text-xl sm:text-2xl">
-                    Schedule Appointment
-                  </DialogTitle>
-                  <DialogClose asChild className="dialog-close">
-                    <button type="button" aria-label="close">
-                      <Cross />
-                    </button>
-                  </DialogClose>
-                </div>
-                <DialogDescription className="dialog-description">
-                  Please fill in the following details to schedule
-                </DialogDescription>
-              </DialogHeader>
-              <ScheduleAppointmentForm />
-            </DialogContent>
-          </Dialog>
-
-          {/* Cancel Appointment */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <button type="button" className="text-[#FBECEC]">
-                Cancel
-              </button>
-            </DialogTrigger>
-            <DialogContent
-              showCloseButton={false}
-              className="dialog-content lg:w-160"
-            >
-              <DialogHeader className="gap-4">
-                <div className="sm:flex sm:justify-between sm:items-center relative">
-                  <DialogTitle className="text-xl sm:text-2xl">
-                    Cancel Appointment
-                  </DialogTitle>
-                  <DialogClose asChild className="dialog-close">
-                    <button type="button" aria-label="close">
-                      <Cross />
-                    </button>
-                  </DialogClose>
-                </div>
-                <DialogDescription className="dialog-description">
-                  Are you sure you want to cancel your appointment?
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+          <ScheduleAppointment appointmentId={id} status={status} />
+          <CancelAppointment appointmentId={id} status={status} />
         </div>
       );
     },

@@ -22,9 +22,7 @@ const LoginInput = ({
 }: InputProps) => {
   return (
     <div>
-      <label className="text-sm text-carepulse-gray font-medium" htmlFor={id}>
-        {label}
-      </label>
+      <label htmlFor={id}>{label}</label>
       <div className="mt-2 md:mt-4 gradient-outline">
         <div className="flex items-center bg-noble-black-600 border border-noble-black-500 rounded-lg py-3 px-4 gap-3 focus-within:outline-5 outline-[#84DCF53D]">
           <Icon />

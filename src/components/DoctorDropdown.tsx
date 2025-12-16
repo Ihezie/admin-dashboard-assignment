@@ -18,9 +18,13 @@ interface DoctorDropdownProps {
   doctors: Doctor[];
 }
 
-const DoctorDropdown = ({ doctor, setDoctor, doctors }: DoctorDropdownProps) => {
+const DoctorDropdown = ({
+  doctor,
+  setDoctor,
+  doctors,
+}: DoctorDropdownProps) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="form-item">
       <label
         className="text-sm text-carepulse-gray font-medium"
         htmlFor="doctor"
@@ -28,8 +32,8 @@ const DoctorDropdown = ({ doctor, setDoctor, doctors }: DoctorDropdownProps) => 
         Doctor
       </label>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button className="bg-transparent border border-noble-black-500 h-12 rounded-lg text-white flex justify-between items-center hover:bg-transparent hover:border-carepulse-green">
+        <DropdownMenuTrigger id="doctor" asChild>
+          <Button className="bg-transparent border border-noble-black-500 h-12 rounded-lg text-white flex justify-between items-center hover:bg-transparent hover:border-white focus:border-white">
             <div className="flex gap-3.5 items-center ">
               <Search className="size-6" />
               <div className="glass-gradient border-white/10 border rounded-[5px] px-3 py-1">

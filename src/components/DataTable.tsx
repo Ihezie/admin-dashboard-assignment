@@ -17,16 +17,7 @@ import {
 } from "@/components/ui/table";
 import ArrowRight from "@/assets/icons/arrow-right.svg?react";
 import ArrowLeft from "@/assets/icons/arrow-left.svg?react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import Cross from "../assets/icons/cross.svg?react";
+import AddToList from "./AddToList";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -108,36 +99,7 @@ export function DataTable<TData, TValue>({
         >
           <ArrowLeft className="size-5" />
         </Button>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              className="border-noble-black-500 text-sm font-semibold hover:bg-carepulse-green hover:text-white"
-              variant="outline"
-            >
-              Add to List
-            </Button>
-          </DialogTrigger>
-          <DialogContent
-            showCloseButton={false}
-            className="dialog-content lg:w-[42.33%]"
-          >
-            <DialogHeader className="gap-4">
-              <div className="sm:flex sm:justify-between sm:items-center relative">
-                <DialogTitle className="text-xl sm:text-2xl">
-                  Add Appointment
-                </DialogTitle>
-                <DialogClose asChild className="dialog-close">
-                  <button type="button" aria-label="close">
-                    <Cross />
-                  </button>
-                </DialogClose>
-              </div>
-              <DialogDescription className="dialog-description">
-                Please fill the following details to add appointment.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <AddToList />
         <Button
           aria-label="next"
           variant="secondary"
